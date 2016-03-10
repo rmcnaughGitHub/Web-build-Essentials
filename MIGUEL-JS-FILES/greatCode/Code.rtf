@@ -1,0 +1,40 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww13620\viewh25340\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs48 \cf0 My Flickr Feed: https://api.flickr.com/services/feeds/photos_public.gne?id=47392863@N02&lang=en-us&format=rss_200\
+\
+Geo Feed: https://api.flickr.com/services/feeds/geo/?id=47392863@N02&lang=en-us&format=rss_200\
+\
+KML: \
+https://api.flickr.com/services/feeds/geo/?id=47392863@N02&lang=en-us&format=kml_nl\
+\
+\
+////////////////////////////////////////\
+if( $('.mob-nav').is(':visible') )\{//fixes undefined error\
+\
+////////////////////////////////////////FINDS THE URL AND LAUNCH\
+$('.launchURL').click(function(e)\{\
+  e.preventDefault();\
+  window.location = $(this).find('a').attr('href');\
+\});\
+\
+/////////////////////////////////////\
+PLACE-HOLDER FOR IE9\
+		firePlaceHolder:function()\{\
+			$(':input[placeholder]').placeholder();\
+		\}\
+\
+trulicity.util.runPlaceHolder();\
+\
+\
+\
+/////////////////////////////////////\
+\'93dtc-savings-and-support.html?section=taltz-together\'94\
+\
+\
+\
+\
+}
