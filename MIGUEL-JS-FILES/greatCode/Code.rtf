@@ -35,6 +35,53 @@ trulicity.util.runPlaceHolder();\
 \'93dtc-savings-and-support.html?section=taltz-together\'94\
 \
 \
+/////////////////////////////////////\
+-Event Delegation\
+\pard\pardeftab720\sl358
+\cf0 $([parent]).on('click', [target], [callback]);\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 // NAV SCROLL\
+function scrollToAnchor(scrollAnchor) \{\
+  'use strict';\
+  var $dataAnchor = $('div[data-anchor="' + scrollAnchor + '"]'),\
+      scrollPoint;\
+\
+  var bodyPadding = parseInt($('body').css('paddingTop'), 10);\
+\
+  if ($dataAnchor.length) \{\
+    canActivateArrow = false;\
+    scrollPoint = $dataAnchor.offset().top - bodyPadding;\
+    $('body,html').animate(\{\
+        scrollTop: scrollPoint\
+    \}, 500, function () \{\
+      canActivateArrow = true;\
+      activateArrow();\
+    \});\
+  \}\
+\}\
+/////////////////////////////////////\
+$('[data-anchor]').each(function() \{\
+      var dataAnchor = $(this);\
+\
+      if($scrollPos >= dataAnchor.offset().top &&\
+        dataAnchor.data('anchor') === navItem.data('scroll')) \{\
+\
+        var current = navItem;\
+\
+        $('.mob-nav a').removeClass('active');\
+\
+        navItem.addClass('active');\
+\
+        var stickyNavIsOpen = $('.sticky-nav ul').hasClass('is-open');\
+\
+        if(stickyNavIsOpen) \{\
+          $('.sticky-nav ul').removeClass('is-open');\
+        \}\
+      \}\
+    \});\
+  \});\
+\
 \
 \
 }
