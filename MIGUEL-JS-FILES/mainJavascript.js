@@ -9,6 +9,7 @@ var run = (function (){
   var $scrolloc = $(window).scrollTop();
   var $scrollTop = $('.header, .desktop').height();
   //for anchor scroll, Adjusted when header becomes fixed in mobile view
+  vid = document.getElementById("What Ever Class"),//video
 
   ////DETECT WINDOW SIZE////
   var mobileSize = $(window).width() <= 667,
