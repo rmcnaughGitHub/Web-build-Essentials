@@ -15,11 +15,24 @@ var run = (function (){
   var mobileSize = $(window).width() <= 667,
   tabletSize = $(window).width() >= 728,
   desktopSize = $(window).width() >= 1200;
+  /*CSS
+  .disableClick {
+    pointer-events: none !important;
+  }*/
 
 
   //INTITIALIZE
   var init = function(){
     setupElements();
+
+    // checks anchor position for mobile scrolling
+    if( mobileSize ){
+      goToAnchorPos();
+    }else{
+      // checks anchor position for DESKTOP/TABLET scrolling
+      navigateToSection();
+    }
+
   };
 
 
@@ -138,6 +151,68 @@ var run = (function (){
 
     }
   }
+
+  ///SCROLL TO SECTION FROM SLIDE-NAVIGATION TABLET/DESKTOP////
+  navigateToSection = function() {
+
+     scrollerOffset = -$veltassaStickyHeader.height();
+
+     //tablet /desktop
+     if(window.location.hash) {
+      var dest = 0;
+      var newlocation = window.location.hash; //grab section from url
+      var currIdx = ""; //save section # to highlight
+
+       $('.sticky-scroll').each(function(){
+        if($(this).attr("href") === newlocation) {
+          currIdx = $(this).attr("data-idx");
+          console.log('current id = ' + currIdx);
+        }
+       });
+
+       if($(newlocation).offset().top > $(document).height()-$(window).height()){
+            dest = $(document).height()-$(window).height();
+       }else{
+            dest = $(newlocation).offset().top;
+       }
+
+       $('html,body').stop().animate({scrollTop:dest + scrollerOffset}, 1000,'swing', function(){
+            setTimeout(function() {
+              setCurrentNav(currIdx, stickyNavs[currPage]);//on click set current nav
+            }, 100)
+        });
+     }
+
+  };
+
+  var goToAnchorPos = function() {
+    setTimeout(function() {
+      if( window.location.hash && mobileSize ) {
+          var newlocation = window.location.hash; //grab section from url
+          var topForSection = $(newlocation).offset().top; //border 
+
+          console.log('current # = ' + newlocation);
+          console.log('veltassaTop = ' + veltassaTop + ' currentStickyNav = ' +
+            currentStickyNav + ' topForSection = ' + topForSection);
+
+          $('html, body').stop().animate({scrollTop: (topForSection - (veltassaTop + currentStickyNav)) }, 'slow', function(){
+            if( aboutPage &&  newlocation == '#what-is-veltassa'){
+              $whatIsVeltassaText.text('WHAT IS VELTASSA?');
+            }else if( highPotassiumPage &&  newlocation == '#what-is-high-potassium'){
+              $whatIsHPText.text('WHAT IS HIGH POTASSIUM');
+            }
+            
+          });
+       }
+    } ,500);      
+  };
+
+  /////SLIDE-MENU CLICK FUNCTION
+  $('.menu-item-click').click(function(){
+    console.log('This clicked = ' + $(this).attr('menu-item-click') );
+    goToAnchorPos();
+    navigateToSection();
+  });
 
 
   ////MOUSE EVENTS////
