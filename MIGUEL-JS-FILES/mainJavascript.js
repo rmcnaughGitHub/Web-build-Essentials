@@ -15,10 +15,6 @@ var run = (function (){
   var mobileSize = $(window).width() <= 667,
   tabletSize = $(window).width() >= 728,
   desktopSize = $(window).width() >= 1200;
-  /*CSS
-  .disableClick {
-    pointer-events: none !important;
-  }*/
 
 
   //INTITIALIZE
