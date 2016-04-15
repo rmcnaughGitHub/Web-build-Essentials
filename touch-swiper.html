@@ -10,7 +10,7 @@
 		<script   src="https://code.jquery.com/jquery-1.12.3.min.js"   integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="   crossorigin="anonymous"></script>
 		<!-- JS FILES -->
 		<!-- <scrip src="MIGUEL-JS-FILES/jquery.min.js"></script>-->
-		<scrip src="MIGUEL-JS-FILES/swipe.js"></script>
+		<script src="js/swipe.js"></script>
 		
 		<style type="text/css">
 			html, body{
@@ -33,13 +33,57 @@
 			    width: 100%;
 			    position: relative;
 			}
+			.swipe .nav {
+				position: absolute;
+				width: 80px;
+				height: 38px;
+				z-index: 10;
+				text-align: center;
+				line-height: 40px;
+				display: inline-block;
+				color: #fff;
+				top: 45%;
+				cursor: pointer;
+				background-color: rgba(0,0,0,0.8)
+			}
+			.swipe .nav.next {
+				background: url('img/arrow-Right-white.png');
+				height: 71px;
+				opacity: .8;
+				right: 0;
+				width: 46px;
+				/*-webkit-border-radius: 3px 0 0 3px;
+				border-radius: 3px 0 0 3px;*/
+			}
+			.swipe .nav.prev {
+				background: url('img/arrow-Left-white.png');
+				height: 71px;
+				left: 0;
+				opacity: .8;
+				width: 46px;
+				/*-webkit-border-radius: 0 3px 3px 0;
+				border-radius: 0 3px 3px 0;*/
+			}
 
 		</style>
 		<script type="text/javascript">
 		//https://github.com/thebird/Swipe
 		//http://www.hongkiat.com/blog/jquery-swipe-slider/
 			$(document).ready(function(){
+
+				//get the number of `<script>` elements that have the correct `src` attribute
+				var len = $('script').filter(function () {
+					console.log('JS loaded = '+$(this).attr('src'));
+				    return ($(this).attr('src') == '<external JS>');
+				}).length;
+
+				//if there are no scripts that match, the load it
+				if (len === 0) {
+				    //$.getScript('<external JS>');
+				}
+
 				
+				//window.mySwipe = Swipe(document.getElementById('slider'));
 				Slider = $('#slider').Swipe({
 					auto: 3000,
 					continuous: true
@@ -62,8 +106,8 @@
 		        <div><img src="http://kobiaradband.com/kobiImages/highLightsBig.jpg" width="600" height="350"></div>
 		        <div><img src="http://kobiaradband.com/kobiImages/spaceBig.jpg" width="600" height="350"></div>
 		    </div>
-		    <span class="nav prev">Prev</span>
-			<span class="nav next">Next</span>
+		    <span class="nav prev"></span>
+			<span class="nav next"></span>
 		</div>
 
 	</body>
